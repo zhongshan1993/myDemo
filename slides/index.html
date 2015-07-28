@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>slide</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		li {
+			list-style: none;
+		}
+		#slides {
+			width: 600px;
+			height: 300px;
+			margin: 100px auto;
+			/*background: */
+			overflow: hidden;
+			position: relative;
+			-moz-border-radius: 10px;
+			-webkit-border-radius: 10px;
+			-o-border-radius: 10px;
+			/*-moz-border-radius: 10px;*/
+			-ms-border-radius: 10px;
+			border-radius: 10px;
+		}
+		#slides ul {
+			position: absolute;
+			top: 0;
+			left:0;
+		}
+		#slides li {
+			width: 600px;
+			height: 300px;
+		}
+	</style>
+</head>
+<body>
+	<div id="slides">
+		<ul>
+			<li>
+				<img src="images/1.jpg" alt="" />
+			</li>
+			<li>
+				<img src="images/2.jpg" alt="" />
+			</li>
+			<li>
+				<img src="images/3.jpg" alt="" />
+			</li>
+			<li>
+				<img src="images/4.jpg" alt="" />
+			</li>
+		</ul>
+	</div>
+
+	<script>
+		window.onload = function() {
+			var oSlide = document.getElementById("slides");
+			var oUl = oSlide.getElementsByTagName("ul")[0];
+			var aLi = oUl.getElementsByTagName("li");
+			var timer = null;
+			var oUlHeight = oUl.offsetHeight;
+			var aLiheight = aLi[0].offsetHeight;
+			var t = 0;
+			timer = setInterval(function() {
+				if (t == -1200) {
+					oUl.style.top = '0px';
+					t = 0;
+				}
+				t -= aLiheight;
+				startMove(oUl, 'top', t);
+			}, 2000);
+		}
+
+		function getStyle (obj, attr){
+			if (obj.currentStyle) {
+				return obj.currentStyle[attr];
+			} else {
+				return getComputedStyle(obj, false)[attr];
+			}
+		}
+
+		function startMove (obj, attr, iTarget, fn){
+
+			clearInterval(obj.timer);
+
+			obj.timer = setInterval(function(){
+				var iCur = 0;
+
+				if (attr === 'opacity') {
+					iCur = parseInt(parseFloat(getStyle(obj, attr))*100);
+				} else {
+					iCur = parseInt(getStyle(obj, attr));
+				}
+
+				var iSpeed = (iTarget-iCur)/8;
+				iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+
+				if (iCur === iTarget) {
+					clearInterval(obj.timer);
+
+					if (fn) {
+						fn();
+					}
+				} else {
+					if (attr === 'opacity') {
+						obj.style.filter = "alpha(opacity:"+(iCur + iSpeed)+")";
+						obj.style.opacity = (iCur + iSpeed)/100;
+					} else {
+						obj.style[attr] = iCur + iSpeed + "px";
+					}
+				}
+			}, 30);
+		}
+	</script>
+</body>
+</html>
