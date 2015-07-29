@@ -51,6 +51,12 @@
 			<li>
 				<img src="images/4.jpg" alt="" />
 			</li>
+			<li>
+				<img src="images/4.jpg" alt="" />
+			</li>
+			<li>
+				<img src="images/4.jpg" alt="" />
+			</li>
 		</ul>
 	</div>
 
@@ -62,14 +68,14 @@
 			var timer = null;
 			var oUlHeight = oUl.offsetHeight;
 			var aLiheight = aLi[0].offsetHeight;
-			var t = 0;
+			var t = -aLiheight;
 			timer = setInterval(function() {
-				if (t == -1200) {
-					oUl.style.top = '0px';
+				startMove(oUl, 'top', t);
+				t -= aLiheight;
+				if (t == -oUlHeight) {
+					
 					t = 0;
 				}
-				t -= aLiheight;
-				startMove(oUl, 'top', t);
 			}, 2000);
 		}
 
