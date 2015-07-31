@@ -4,17 +4,27 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>运用拖拽改变窗口大小</title>
 <style>
-#div1 {width:10px; height:10px; background:red; position:absolute; z-index:2;bottom:0;right: 0;}
-#div2 {
-	position: relative;
-	width: 200px;
-	height: 150px;
-	background: #ccc;
-}
-.box {
-	position: absolute;
-	border: 1px dashed #000;
-}
+	#div1 {
+		width:10px; 
+		height:10px; 
+		background:red; 
+		position:absolute; 
+		z-index:2;
+		bottom:0;
+		right: 0;	
+		cursor: nw-resize;
+		background: url(images/drag_ico.gif);
+	}
+	#div2 {
+		position: relative;
+		width: 200px;
+		height: 150px;
+		background: #ccc;
+	}
+	.box {
+		position: absolute;
+		border: 1px dashed #000;
+	}
 </style>
 </head>
 
