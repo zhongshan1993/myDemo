@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.img {
+			margin: 0 auto;
+			text-align: center;
+			width: 400px;
+			height: 400px;
+			padding: 0;
+
+			animation-name:myrotate;
+			animation-duration:3s;
+			animation-timing-function:linear;
+			animation-delay:0s;
+			animation-iteration-count:infinite;
+			animation-direction:normal;
+			animation-play-state:running;
+
+			-moz-animation-name:myrotate;
+			-moz-animation-duration:3s;
+			-moz-animation-timing-function:linear;
+			-moz-animation-delay:0s;
+			-moz-animation-iteration-count:infinite;
+			-moz-animation-direction:normal;
+			-moz-animation-play-state:running;
+
+			-webkit-animation-name:myrotate;
+			-webkit-animation-duration:3s;
+			-webkit-animation-timing-function:linear;
+			-webkit-animation-delay:0s;
+			-webkit-animation-iteration-count:infinite;
+			-webkit-animation-direction:normal;
+			-webkit-animation-play-state:running;
+
+			-o-animation-name:myrotate;
+			-o-animation-duration:3s;
+			-o-animation-timing-function:linear;
+			-o-animation-delay:0s;
+			-o-animation-iteration-count:infinite;
+			-o-animation-direction:normal;
+			-o-animation-play-state:running;
+		}
+		
+		@keyframes myrotate {
+			from {transform: rotate(0deg);}
+			to {transform: rotate(360deg);}
+		}
+		@-moz-keyframes myrotate {
+			from {-moz-transform: rotate(0deg);}
+			to {-moz-transform: rotate(360deg);}
+		}
+		@-webkit-keyframes myrotate {
+			from {-webkit-transform: rotate(0deg);}
+			to {-webkit-transform: rotate(360deg);}
+		}
+		@-o-keyframes myrotate {
+			from {-o-transform: rotate(0deg);}
+			to {-o-transform: rotate(360deg);}
+		}
+	</style>
+</head>
+<body>
+	<div class="img">
+		<img src="http://i.imgur.com/ucQSegc.png" alt="">
+	</div>
+</body>
+</html>
