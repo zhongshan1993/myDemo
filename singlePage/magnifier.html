@@ -33,7 +33,7 @@
 			opacity: 0.5;
 			display: none;
 		}
-		#mask {
+		#mark {
 			position: absolute;
 			top: 0;
 			left: 0;
@@ -41,9 +41,9 @@
 			bottom: 0;
 			width: 100%;
 			height: 100%;
-			background: #ccc;
-			
-			display: none;
+			visibility: hidden;
+			z-index: -9999;
+			/*display: none;*/
 			
 		}
 		#big {
@@ -67,6 +67,7 @@
 		<div id="small">
 			<img src="http://i.imgur.com/qk0VBVm.jpg" alt="">
 			<div id="float_layer"></div>
+			<div id="mark"></div>
 		</div>
 		<div id="big">
 			<img src="http://i.imgur.com/UeHlDaY.jpg" alt="" id="big_pic">
@@ -74,42 +75,50 @@
 	</div>
 
 	<script type="text/javascript">
-		var oBox = document.getElementById('box');
-		var oSmall = document.getElementById('small');
-		var oFloat = document.getElementById('float_layer');
-		var oMask = document.getElementById('mask');
-		var oBig = document.getElementById('big');
-		var oBigPic = document.getElementById('big_pic');
+		window.onload = function() {
+			var oBox = document.getElementById('box');
+			var oSmall = document.getElementById('small');
+			var oFloat = document.getElementById('float_layer');
+			var oMark = document.getElementById('mark');
+			var oBig = document.getElementById('big');
+			var oBigPic = document.getElementById('big_pic');
 
-		oSmall.onmouseover = function() {
-			oBig.style.display = 'block';
-			oFloat.style.display = 'block';
-		}
-		oSmall.onmouseout = function() {
-			oBig.style.display = 'none';
-			oFloat.style.display = 'none';
-		}
-
-		
-
-		oSmall.onmousemove = function(ev) {
-			var oEvent = event || ev;
-			var theLeft = oEvent.clientX - oBox.offsetLeft - oSmall.offsetLeft - oFloat.offsetWidth/2;
-			var theTop = oEvent.clientY - oBox.offsetTop - oSmall.offsetTop - oFloat.offsetHeight/2;
-			if (theLeft < 1) {
-				theLeft = 1;
-			} else if(theLeft > (oSmall.offsetWidth-oFloat.offsetWidth-1)) {
-				theLeft = (oSmall.offsetWidth-oFloat.offsetWidth-1);
+			oSmall.onmouseover = function() {
+				oBig.style.display = 'block';
+				oFloat.style.display = 'block';
 			}
-			if (theTop < 1) {
-				theTop = 1;
-			} else if (theTop > (oSmall.offsetHeight-oFloat.offsetHeight-1)) {
-				theTop = (oSmall.offsetHeight-oFloat.offsetHeight-1);
+			oSmall.onmouseout = function() {
+				oBig.style.display = 'none';
+				oFloat.style.display = 'none';
 			}
-			oFloat.style.left = theLeft + 'px';
-			oFloat.style.top = theTop + 'px';
-			oBigPic.style.top = -theTop + 'px';
-			oBigPic.style.left = -theLeft + 'px';
+
+			
+
+			oSmall.onmousemove = function(ev) {
+				var oEvent=ev||event;
+				var theLeft = oEvent.clientX - oBox.offsetLeft - oSmall.offsetLeft - oFloat.offsetWidth/2;
+				var theTop = oEvent.clientY - oBox.offsetTop - oSmall.offsetTop - oFloat.offsetHeight/2;
+				var percentX = 0;
+				var percentY = 0;
+				if (theLeft < 1) {
+					theLeft = 1;
+				} else if(theLeft > (oSmall.offsetWidth-oFloat.offsetWidth-1)) {
+					theLeft = (oSmall.offsetWidth-oFloat.offsetWidth-1);
+				}
+				if (theTop < 1) {
+					theTop = 1;
+				} else if (theTop > (oSmall.offsetHeight-oFloat.offsetHeight-1)) {
+					theTop = (oSmall.offsetHeight-oFloat.offsetHeight-1);
+				}
+				oFloat.style.left = theLeft + 'px';
+				oFloat.style.top = theTop + 'px';
+
+				percentX = theLeft/(oMark.offsetWidth - oFloat.offsetWidth);
+				percentY = theTop/(oMark.offsetHeight - oFloat.offsetHeight);
+
+				oBigPic.style.left = -(oBigPic.offsetWidth-oBig.offsetWidth)*percentX + 'px';
+				oBigPic.style.top = -(oBigPic.offsetHeight-oBig.offsetHeight)*percentY + 'px';
+			}
 		}
 	</script>
 </body>
