@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>绕着特定坐标旋转(javascript)</title>
+	<style type="text/css">
+		#center {
+			width:10px;
+			height: 10px;
+			border-radius: 5px;
+			background: #000;
+			position: relative;
+			margin: 200px auto;
+		}
+		#dot {
+			width: 10px;
+			height: 10px;
+			background: red;
+			position: absolute;
+			border-radius: 5px;
+			left: 200px;
+			top: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="center">
+		<div id="dot"></div>
+	</div>
+
+	<script type="text/javascript">
+		var oDot = document.getElementById('dot');
+		var deg = 0;
+		var timer = null;
+		var radius = oDot.offsetLeft; // 旋转半径
+
+		timer = setInterval(function() {
+			var radian = (2*Math.PI/360)*deg;
+			var theTop = Math.ceil(Math.sin(radian)*radius);
+			var theLeft = Math.ceil(Math.cos(radian)*radius);
+			oDot.style.top = theTop + 'px';
+			oDot.style.left = theLeft + 'px';
+			deg += 0.5;
+			document.title = theTop;
+			if (deg === 361) {
+				deg = 0;
+			}
+		},1);
+	</script>
+</body>
+</html>
