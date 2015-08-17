@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas时钟</title>
+</head>
+<body>
+	<canvas id="drawing" width="400" height="400"></canvas>
+
+	<script>
+		var draw = document.getElementById('drawing');
+		var time = null;
+		var seconds = 0;
+		var minutes = 0;
+		var hours = 0;
+		var secondsAngle = 0;
+		var minutesAngle = 0;
+		var hoursAngle = 0;
+		var secondsX = 0;
+		var secondsY = 0;
+		var minutesX = 0;
+		var minutesY = 0;
+		var hoursX = 0;
+		var hoursY = 0;
+		if (draw.getContext) {
+			var context = draw.getContext('2d');
+
+			context.font = "bold 14px Arial";
+			context.textAlign = 'center';
+			context.textBaseline = 'middle';
+			// context.fillText('12', 100, 20);
+			var i = 1;
+			var textAngle = 0;
+			var textX = 0;
+			var textY = 0;
+			for (i = 1; i < 13; i++) {
+				textAngle = i * (Math.PI*2/12);
+				textY = 100 - 83*Math.cos(textAngle);
+				textX = 100 + 83*Math.sin(textAngle);
+				context.fillText(i, textX, textY);
+			}
+			drawClock();
+			setInterval(drawClock, 1000);
+
+		}
+
+		function getTime() {
+			var date = new Date();
+			var res = {};
+			res.seconds = date.getSeconds();
+			res.minutes = date.getMinutes();
+			res.hours = date.getHours();
+			return res;
+		}
+
+		function drawClock() {
+			// 开始路径
+			context.beginPath();
+
+			context.clearRect(35, 35, 130, 130);
+			// 绘制外圆
+			context.arc(100, 100, 99, 0, Math.PI*2, false);
+
+			// 绘制内圆
+			context.moveTo(194, 100);
+			context.arc(100, 100, 94, 0, Math.PI*2, false);
+
+
+			time = getTime();
+			seconds = time.seconds;
+			minutes = time.minutes;
+			hours = time.hours > 12 ? time.hours-12: time.hours;
+
+			// 绘制秒针
+			// context.rePaint();
+			context.moveTo(100, 100);
+			secondsAngle = (seconds/60)*Math.PI*2;
+			secondsY = 100 - 65*Math.cos(secondsAngle);
+			secondsX = 100 + 65*Math.sin(secondsAngle);
+			context.lineTo(secondsX, secondsY);
+
+
+			// 绘制分针
+			context.moveTo(100, 100);
+			minutesAngle = ((minutes*60+seconds)/(60*60))*Math.PI*2;
+			minutesY = 100 - 50*Math.cos(minutesAngle);
+			minutesX = 100 + 50*Math.sin(minutesAngle);
+			context.lineTo(minutesX, minutesY);
+
+			// 绘制时针
+			context.moveTo(100, 100);
+			hoursAngle = ((hours*60*60+minutes*60+seconds)/(12*60*60))*Math.PI*2;
+			hoursY = 100 - 35*Math.cos(hoursAngle);
+			hoursX = 100 + 35*Math.sin(hoursAngle);
+			context.lineTo(hoursX, hoursY);
+
+			
+
+			// 描边路径
+			context.stroke();
+		}
+	</script>
+</body>
+</html>
