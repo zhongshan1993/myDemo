@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>响应式布局和flex盒模型</title>
+	<style type="text/css">
+		a{text-decoration: none;color: #ffffff}
+        .menu{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            display: flex;
+            flex-flow: row wrap; /*伸缩容器的主轴和侧轴*/
+        }
+        .menu li{
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            flex: 1 1 100%;
+        }
+        .menu li:nth-child(1){
+            background-color: rosybrown;
+        }
+        .menu li:nth-child(2){
+            background-color: #0bac84;
+        }
+        .menu li:nth-child(3){
+            background-color: bisque;
+        }
+        .menu li:nth-child(4){
+            background-color: #8a6d3b;
+        }
+        .menu li:nth-child(5){
+            background-color: #b9b9b9;
+        }
+        .menu li:nth-child(6){
+            background-color: #f18b1b;
+        }
+        @media (min-width: 480px) {
+            .menu li{
+                flex: 1 1 50%;
+            }
+        }
+        @media (min-width:768px) {
+            .menu{
+                flex-flow: row nowrap;
+            }
+        }
+	</style>
+</head>
+<body>
+	<ul class="menu">
+	    <li><a href="#">Webstorm</a></li>
+	    <li><a href="#">Hbuilder</a></li>
+	    <li><a href="#">Sublime</a></li>
+	    <li><a href="#">Coda</a></li>
+	    <li><a href="#">Vim</a></li>
+	    <li><a href="#">IntelliJ</a></li>
+	</ul>
+</body>
+</html>
