@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css3图片缩放</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		body {
+			background-color: wheat;
+		}
+		.wrapper {
+			width: 1200px;
+			margin: 100px auto;
+			height: auto;
+			overflow: hidden;
+		}
+		.wrapper li {
+			border: 10px solid #fff;
+			width: 370px;
+			height: 550px;
+			float: left;
+			margin: 3px;
+			cursor: pointer;
+			overflow: hidden;
+		}
+		.wrapper li:hover {
+			border: 10px solid gray;
+		}
+		.wrapper li img {
+			transform: scale(1);
+			-moz-transform: scale(1);
+			-webkit-transform: scale(1);
+			transition: transform 2s ease;
+			-moz-transition: transform 2s ease;
+			-webkit-transition: transform 2s ease;
+			-o-transition: transform 2s ease;
+			-ms-transition: transform 2s ease;
+
+		}
+		.wrapper li img:hover {
+			transform: scale(1.25);
+			-moz-transform: scale(1.25);
+			-webkit-transform: scale(1.25);
+		}
+	</style>
+</head>
+<body>
+	<ul class="wrapper">
+	    <li><img src="http://b.hiphotos.baidu.com/image/pic/item/3c6d55fbb2fb43161cb68b6422a4462309f7d307.jpg" alt=""/></li>
+	    <li><img src="http://b.hiphotos.baidu.com/image/pic/item/f603918fa0ec08fa48a933f65bee3d6d55fbda31.jpg" alt=""/></li>
+	    <li><img src="http://f.hiphotos.baidu.com/image/pic/item/838ba61ea8d3fd1fd4d98b31324e251f94ca5fec.jpg" alt=""/></li>
+	    <li><img src="http://e.hiphotos.baidu.com/image/pic/item/d0c8a786c9177f3e6bf9623a75cf3bc79f3d5633.jpg" alt=""/></li>
+	    <li><img src="http://g.hiphotos.baidu.com/image/pic/item/d01373f082025aaf5290b3e5f9edab64034f1a7a.jpg" alt=""/></li>
+	    <li><img src="http://c.hiphotos.baidu.com/image/pic/item/730e0cf3d7ca7bcbb8557c2fbc096b63f624a880.jpg" alt=""/></li>
+	    <li><img src="http://a.hiphotos.baidu.com/image/pic/item/b90e7bec54e736d1f7de1fb498504fc2d46269b9.jpg" alt=""/></li>
+	    <li><img src="http://f.hiphotos.baidu.com/image/pic/item/1e30e924b899a90199f32ad919950a7b0308f51f.jpg" alt=""/></li>
+	    <li><img src="http://h.hiphotos.baidu.com/image/pic/item/77c6a7efce1b9d165a5d4a79f1deb48f8c546414.jpg" alt=""/></li>
+	</ul>
+</body>
+</html>
