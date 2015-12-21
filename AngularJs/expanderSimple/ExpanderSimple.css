@@ -1,0 +1,17 @@
+.expander {
+	margin: 20px auto;
+	width: 200px;
+}
+.title {
+	height: 30px;
+	line-height: 30px;
+	background-color: #000;
+	color: #fff;
+	text-align: center;
+}
+.body {
+	border: 3px solid #000;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+}

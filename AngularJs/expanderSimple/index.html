@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html ng-app="ExpanderModule">
+<head>
+	<meta charset="UTF-8">
+	<title>自己编写指令 - 最简单的expander指令</title>
+	<link rel="stylesheet" href="ExpanderSimple.css">
+	<script src="http://libs.useso.com/js/angular.js/1.3.0-beta.9/angular.min.js"></script>
+	<script src="ExpanderSimple.js"></script>
+</head>
+<body>
+	<div ng-controller="SomeController">
+		<expander class="expander" expander-title="title">
+			{{text}}
+		</expander>	
+	</div>
+</body>
+</html>
